@@ -9,6 +9,8 @@ const listSchema = new Schema({
     },
     title: {
         type: String,
+        required: true
+
     },
     todos: [{
         type: String,
