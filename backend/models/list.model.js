@@ -7,10 +7,6 @@ const listSchema = new Schema({
         required: true,
         ref: 'User'
     },
-    time_stamp: {
-        type: Date,
-        default: Date.now()
-    },
     title: {
         type: String,
     },
