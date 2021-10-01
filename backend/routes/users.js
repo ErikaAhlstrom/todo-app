@@ -15,27 +15,28 @@ router.route('/')
       .catch(err => res.status(400).json('Error: ' + err))
   })
 
+// Get one user
+router.route('/:id')
+  .get((req, res, next) => {
+    User.findById(req.params.id)
+      .then(user => res.json(user))
+      .catch(err => res.status(400).json('Error: ' + err))
+  })
+
 // Add a user
 router.route('/add')
   .post((req, res, next) => {
-   
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const password = req.body.password;
 
     const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      password
+      "firstName": req.body.firstName,
+      "lastName": req.body.lastName,
+      "email": req.body.email,
+      "password": req.body.password
     });
-    
-   
 
     newUser.save()
       .then(() => res.json('New user added!'))
       .catch(err => res.status(400).json('Error: ' + err)); 
-
   })
+
 module.exports = router;
