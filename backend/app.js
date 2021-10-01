@@ -6,9 +6,9 @@ const logger = require('morgan');
 
 // vad gör denna??
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
-
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -22,6 +22,7 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 
+//Middlewares
 // vad gör denna??
 app.use(cors());
 
@@ -48,6 +49,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Connect to Mongo DB Atlas Cloud
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {useNewUrlParser: true});
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('MongoDB Database connection established successfully!');
+})
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
