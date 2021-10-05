@@ -23,10 +23,16 @@ body {
   padding: 32px;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1 {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 32px;
+  color: var(--primary);
+
 }
 
 h2 {
@@ -97,6 +103,12 @@ h2 {
 .list-delete-btn {
   color: #fff;
   font-size: 20px;
+}
+
+.list-delete-btn:hover,
+.list-edit-btn:hover {
+  font-size: 25px;
+  transition: 0.5s;
 }
 
 .list-date {
