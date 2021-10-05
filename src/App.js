@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import ListPage from './pages/ListPage';
 import NewListItem from './pages/NewListPage';
 
-const API_BASE = "http://localhost:3000"
+const API_BASE = "http://localhost:5000"
 function App() {
 
   const [lists, setLists] = useState([]);
