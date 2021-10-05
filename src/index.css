@@ -43,6 +43,12 @@ h2 {
   margin-bottom: 32px;
 }
 
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .btn {
   color: var(--light);
   background-color: var(--secondary);
@@ -96,12 +102,12 @@ h2 {
   justify-content: space-between;
 }
 .list-edit-btn {
-  color: #fff;
+  color: var(--light);
   font-size: 20px;
   margin-right: 10px;
 }
 .list-delete-btn {
-  color: #fff;
+  color: var(--light);
   font-size: 20px;
 }
 
@@ -109,6 +115,13 @@ h2 {
 .list-edit-btn:hover {
   font-size: 25px;
   transition: 0.5s;
+}
+
+.list-line {
+  border-top: 0.5px solid var(--light);
+  width: 20%;
+  margin-bottom: 10px;
+
 }
 
 .list-date {
