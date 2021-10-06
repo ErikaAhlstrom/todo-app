@@ -14,6 +14,7 @@ export default function ListItem({list}) {
             .catch(err => console.log("Error: ", err))
     }
     return (
+      <Link to={`/list/edit/${list._id}`} >
         <div className="list">
           <div className="list-header">
             <h3>{list.title}</h3>
@@ -29,8 +30,9 @@ export default function ListItem({list}) {
                 ))}
             </div>
           <p className="list-date">{
-            <Moment format="YYYY-MM-DD">{list.updatedAt}</Moment>}
+            <Moment format="MMM Do hh:mm">{list.updatedAt}</Moment>}
           </p>
         </div>
+        </Link>
     )
 }
