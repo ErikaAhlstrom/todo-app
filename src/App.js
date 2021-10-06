@@ -11,7 +11,6 @@ function App() {
 
   useEffect(() => {
     getLists();
-    console.log(lists)
   }, [])
 
   const getLists = () => {
@@ -19,7 +18,6 @@ function App() {
       .then(res => res.json())
       .then((data) => {
         setLists(data)
-        console.log(data)
       })
       .catch(err => console.log("Error: ", err))
   }
