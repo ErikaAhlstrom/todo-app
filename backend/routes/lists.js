@@ -2,11 +2,6 @@
 const express = require('express');
 const router = express.Router();
 let List = require('../models/list.model')
-/* GET users listing. */
-/* router.get('/', function(req, res, next) {
-  res.send('Hey from Users Router');
-}); */
-
 
 // Get all lists
 router.route('/')
