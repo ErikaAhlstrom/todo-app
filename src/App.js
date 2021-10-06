@@ -3,6 +3,8 @@ import {Route, Switch} from 'react-router-dom';
 import ListPage from './pages/ListPage';
 import CreateListPage from './pages/CreateListPage';
 import EditListPage from './pages/EditListPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 const API_BASE = "http://localhost:5000"
 function App() {
@@ -31,6 +33,14 @@ function App() {
         </Route>
 
         <Route path="/list/edit/:id" component={EditListPage}>
+        </Route>
+
+        <Route path="/login" >
+          <LoginPage></LoginPage>
+        </Route>
+        
+        <Route path="/register" >
+          <RegisterPage></RegisterPage>
         </Route>
 
         <Route path="/">
