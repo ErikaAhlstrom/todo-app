@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from "react-router-dom"; 
+import { useHistory, Link } from "react-router-dom"; 
 
 export default function CreateListPage() {
 
@@ -37,33 +37,38 @@ export default function CreateListPage() {
     }
 
     return (
+        <div className="listPage">
+            <h1> Add new note</h1>
          <div className="create-list">
-             <form onSubmit={handleSubmit}>
-          <div className="create-list-header">
-              <input 
-                placeholder="Title" 
-                className="create-title-input" 
-                type="text"
-                name="title"
-                required="true" 
-                id="create-title-input">
-                </input>
-          </div>
-            <textarea 
-                name="todos"
-                placeholder="Notes..."
-                className="create-textarea"
-                id="create-todos-input"
-                required="true" >
-            </textarea>
-            <div className="create-btn-container">
-            <button className="btn btn-secondary">Back</button>
-            <input 
-                className="btn btn-primary"
-                type="submit" 
-                value="Save" />
-            </div>
-          </form>
+            <form onSubmit={handleSubmit}>
+                <div className="create-list-header">
+                    <input 
+                        placeholder="Title" 
+                        className="create-title-input" 
+                        type="text"
+                        name="title"
+                        required="true" 
+                        id="create-title-input">
+                        </input>
+                </div>
+                <textarea 
+                    name="todos"
+                    placeholder="Notes..."
+                    className="create-textarea"
+                    id="create-todos-input"
+                    required="true" >
+                </textarea>
+                <div className="create-btn-container">
+                    <Link to="/">
+                        <button className="btn btn-secondary">Back</button>
+                    </Link>
+                <input 
+                    className="btn btn-primary"
+                    type="submit" 
+                    value="Save" />
+                </div>
+            </form>
+        </div>
         </div>
     )
 }
