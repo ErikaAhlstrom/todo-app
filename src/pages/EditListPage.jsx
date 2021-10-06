@@ -1,12 +1,27 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 import { useHistory, Link } from "react-router-dom"; 
 
-export default function EditListPage() {
-
+export default function EditListPage(props) {
     let history = useHistory()
+    const list_id = props.match.params.id
+
+    const [lists, setList] = useState([]);
+
+    useEffect(() => {
+        getList();
+        console.log(lists)
+    }, [])
 
     function getList() {
-        
+        fetch(`http://localhost:5000/lists/${list_id}`)
+            .then(res => res.json())
+            .then((data) => {
+                setList(data)
+                console.log("Hello from fetch: ", data)
+            })
+            .catch(err => console.log("Error: ", err))
+                
+                
     }
 
     function handleEditList(title, todosArray) {
