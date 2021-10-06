@@ -10,6 +10,7 @@ export default function ListPage({lists}) {
             <div className="lists-header">
                 <h2>Your Notes</h2>
                 <Link to='/list/create' className="btn new-note-btn btn-success">New Note</Link>
+                <Link to='/logout' className="btn new-note-btn btn-secondary">Logout</Link>
             </div>   
 
             <div className="lists-container">
