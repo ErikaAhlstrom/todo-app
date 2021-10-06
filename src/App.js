@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import ListPage from './pages/ListPage';
 import CreateListPage from './pages/CreateListPage';
+import EditListPage from './pages/EditListPage';
 
 const API_BASE = "http://localhost:5000"
 function App() {
@@ -29,6 +30,10 @@ function App() {
 
         <Route path="/list/create">
           <CreateListPage></CreateListPage>
+        </Route>
+
+        <Route path="/list/edit">
+          <EditListPage></EditListPage>
         </Route>
 
         <Route path="/">
