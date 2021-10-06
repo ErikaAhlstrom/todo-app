@@ -4,23 +4,32 @@ import { useHistory, Link } from "react-router-dom";
 export default function EditListPage(props) {
     let history = useHistory()
     const list_id = props.match.params.id
-
-    const [lists, setList] = useState([]);
+    const [list, setList] = useState([]);
+    const [textareaInput, setTextareaInput] = useState([]);
 
     useEffect(() => {
         getList();
-        console.log(lists)
     }, [])
+
+    function handleOnChange(e) {
+
+        let newList = {...list, [e.target.name]: e.target.value}
+        setList(newList);
+        
+        setTextareaInput(newList.todos)
+        console.log(list)
+    }
+
 
     function getList() {
         fetch(`http://localhost:5000/lists/${list_id}`)
             .then(res => res.json())
             .then((data) => {
                 setList(data)
-                console.log("Hello from fetch: ", data)
+                let input = data.todos.join("\r\n") 
+                setTextareaInput(input)
             })
-            .catch(err => console.log("Error: ", err))
-                
+            .catch(err => console.log("Error: ", err))            
                 
     }
 
@@ -30,7 +39,7 @@ export default function EditListPage(props) {
             "title": title,
             "todos": todosArray
         }
-        fetch(("http://localhost:5000/lists/add"), {
+        fetch((`http://localhost:5000/lists/update/${list_id}`), {
             method: "POST",
             body: JSON.stringify(newList),
             headers: {
@@ -56,38 +65,42 @@ export default function EditListPage(props) {
     }
 
     return (
-        <div className="listPage">
-            <h1> Edit your note</h1>
-         <div className="create-list">
-            <form onSubmit={handleSubmit}>
-                <div className="create-list-header">
-                    <input 
-                        placeholder="Title" 
-                        className="create-title-input" 
-                        type="text"
-                        name="create-title"
-                        required="true" 
-                        id="edit-title-input">
-                        </input>
+        <>
+            <div className="listPage">
+                <h1> Edit your note</h1>
+                <div className="create-list">
+                    <form onSubmit={handleSubmit}>
+                        <div className="create-list-header">
+                            <input 
+                                value={list["title" || ""]}
+                                className="create-title-input" 
+                                type="text"
+                                name="title"
+                                required={true} 
+                                id="edit-title-input"
+                                onChange={handleOnChange}>
+                                </input>
+                        </div>
+                        <textarea 
+                            name="todos"
+                            value={textareaInput || ""}
+                            onChange={handleOnChange}
+                            className="create-textarea"
+                            id="edit-todos-input"
+                            required={true} >
+                        </textarea>
+                        <div className="create-btn-container">
+                            <Link to="/">
+                                <button className="btn btn-secondary">Back</button>
+                            </Link>
+                        <input 
+                            className="btn btn-primary"
+                            type="submit" 
+                            value="Save" />
+                        </div>
+                    </form>
                 </div>
-                <textarea 
-                    name="-create-todos"
-                    placeholder="Notes..."
-                    className="create-textarea"
-                    id="edit-todos-input"
-                    required="true" >
-                </textarea>
-                <div className="create-btn-container">
-                    <Link to="/">
-                        <button className="btn btn-secondary">Back</button>
-                    </Link>
-                <input 
-                    className="btn btn-primary"
-                    type="submit" 
-                    value="Save" />
-                </div>
-            </form>
-        </div>
-        </div>
+            </div>
+        </>
     )
 }
