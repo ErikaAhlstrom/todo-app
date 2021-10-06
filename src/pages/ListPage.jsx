@@ -14,7 +14,7 @@ export default function ListPage({lists}) {
 
             <div className="lists-container">
                 {lists.map(list => (
-                    <ListItem list={list}/>
+                    <ListItem key={list._id} list={list}/>
                 ))}
             </div>
         </div>

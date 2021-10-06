@@ -25,7 +25,7 @@ export default function ListItem({list}) {
           <hr className="list-line"></hr>
             <div className="text">
                 {list.todos.map(todo => (
-                    <p>{todo}</p>
+                    <p key={[todo]}>{todo}</p>
                 ))}
             </div>
           <p className="list-date">{
