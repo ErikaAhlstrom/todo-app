@@ -1,6 +1,9 @@
 import React from 'react'
+import { useHistory } from "react-router-dom"; 
 
 export default function NewListPage() {
+
+    let history = useHistory()
 
     function handleCreateList(title, todosArray) {
         const newList = {
@@ -15,7 +18,10 @@ export default function NewListPage() {
                 "Content-Type": "application/json"
             }
         })
-            .then(res => console.log(res))
+            .then(res => {
+                history.push("/")
+                window.location.reload()
+            })
             .catch(err => console.log("Error: ", err))
     }
 
