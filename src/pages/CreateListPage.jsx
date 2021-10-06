@@ -44,7 +44,7 @@ export default function CreateListPage() {
                 <div className="create-list-header">
                     <input 
                         placeholder="Title" 
-                        className="create-title-input" 
+                        className="input create-title-input" 
                         type="text"
                         name="title"
                         required="true" 
@@ -54,7 +54,7 @@ export default function CreateListPage() {
                 <textarea 
                     name="todos"
                     placeholder="Notes..."
-                    className="create-textarea"
+                    className="input create-textarea"
                     id="create-todos-input"
                     required="true" >
                 </textarea>
@@ -63,7 +63,7 @@ export default function CreateListPage() {
                         <button className="btn btn-secondary">Back</button>
                     </Link>
                 <input 
-                    className="btn btn-primary"
+                    className="btn btn-success"
                     type="submit" 
                     value="Save" />
                 </div>

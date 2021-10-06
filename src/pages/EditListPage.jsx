@@ -94,7 +94,7 @@ export default function EditListPage(props) {
                                 <button className="btn btn-secondary">Back</button>
                             </Link>
                         <input 
-                            className="btn btn-primary"
+                            className="btn btn-success"
                             type="submit" 
                             value="Save" />
                         </div>
