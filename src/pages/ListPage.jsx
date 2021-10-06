@@ -9,7 +9,7 @@ export default function ListPage({lists}) {
             <h1> Welcome, Erika</h1>
             <div className="lists-header">
                 <h2>Your Notes</h2>
-                <Link to='/list/new' className="btn new-note-btn">New Note</Link>
+                <Link to='/list/create' className="btn new-note-btn btn-primary">New Note</Link>
             </div>   
 
             <div className="lists-container">

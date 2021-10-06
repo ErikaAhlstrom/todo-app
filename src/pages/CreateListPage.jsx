@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from "react-router-dom"; 
 
-export default function NewListPage() {
+export default function CreateListPage() {
 
     let history = useHistory()
 
@@ -51,15 +51,18 @@ export default function NewListPage() {
           </div>
             <textarea 
                 name="todos"
-                placeholder="Todos..."
+                placeholder="Notes..."
                 className="create-textarea"
                 id="create-todos-input"
                 required="true" >
             </textarea>
+            <div className="create-btn-container">
+            <button className="btn btn-secondary">Back</button>
             <input 
-                className="btn"
+                className="btn btn-primary"
                 type="submit" 
                 value="Save" />
+            </div>
           </form>
         </div>
     )

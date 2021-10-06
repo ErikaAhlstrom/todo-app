@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import ListPage from './pages/ListPage';
-import NewListItem from './pages/NewListPage';
+import CreateListPage from './pages/CreateListPage';
 
 const API_BASE = "http://localhost:5000"
 function App() {
@@ -27,8 +27,8 @@ function App() {
     <div className="app">
       <Switch>
 
-        <Route path="/list/new">
-          <NewListItem></NewListItem>
+        <Route path="/list/create">
+          <CreateListPage></CreateListPage>
         </Route>
 
         <Route path="/">
