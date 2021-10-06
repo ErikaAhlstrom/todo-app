@@ -10,11 +10,11 @@ function App() {
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
-    getTodos();
+    getLists();
     console.log(lists)
   }, [])
 
-  const getTodos = () => {
+  const getLists = () => {
     fetch(API_BASE + "/lists")
       .then(res => res.json())
       .then((data) => {
@@ -32,8 +32,7 @@ function App() {
           <CreateListPage></CreateListPage>
         </Route>
 
-        <Route path="/list/edit">
-          <EditListPage></EditListPage>
+        <Route path="/list/edit/:id" component={EditListPage}>
         </Route>
 
         <Route path="/">
