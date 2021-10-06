@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let User = require('../models/user.model')
-/* GET users listing. */
-/* router.get('/', function(req, res, next) {
-  res.send('Hey from Users Router');
-}); */
+const bcrypt = require('bcryptjs');
 
 
 // Get all users
@@ -13,6 +10,44 @@ router.route('/')
     User.find()
       .then(users => res.json(users))
       .catch(err => res.status(400).json('Error: ' + err))
+  })
+  .post( async (req, res, next) => {
+    try {
+      const {firstName, lastName, email, password } = req.body
+
+      if(!email || !password) {
+        return res.status(400).json({errorMessage: "Please fill in all required fields"})
+      }
+
+      if(password.length < 6) {
+        return res.status(400).json({errorMessage: "Please enter a password with at least 6 characters."})
+      }
+
+      const existingUser = await User.findOne({email})
+      if(existingUser) {
+        return res.status(400).json({
+          errorMessage: "This email already exists"
+        })
+      }
+
+      const salt = await bcrypt.genSalt();
+      const passwordHash = await bcrypt.hash(password, salt)
+
+      const newUser = new User({
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "password": passwordHash
+      })
+
+      const savedUser = await newUser.save();
+      console.log(newUser)
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).send();
+    }
+
   })
 
 // Get one user
@@ -25,18 +60,6 @@ router.route('/:id')
 
 // Add a user
 router.route('/add')
-  .post((req, res, next) => {
-
-    const newUser = new User({
-      "firstName": req.body.firstName,
-      "lastName": req.body.lastName,
-      "email": req.body.email,
-      "password": req.body.password
-    });
-
-    newUser.save()
-      .then(() => res.json('New user added!'))
-      .catch(err => res.status(400).json('Error: ' + err)); 
-  })
+  
 
 module.exports = router;
