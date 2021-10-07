@@ -5,6 +5,9 @@ import CreateListPage from './pages/CreateListPage';
 import EditListPage from './pages/EditListPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const API_BASE = "http://localhost:5000"
 function App() {

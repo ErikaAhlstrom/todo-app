@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
+
 export default function RegisterPage() {
 
     const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export default function RegisterPage() {
             }
             console.log(registerData);
 
-            await axios.post("http://localhost:5000/auth", registerData)
+            await axios.post("http://localhost:5000/auth", registerData);
 
         } catch(err) {
 
