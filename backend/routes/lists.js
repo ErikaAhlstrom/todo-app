@@ -5,7 +5,7 @@ const List = require('../models/list.model')
 const auth = require("../middleware/auth")
 
 // Get all lists
-// Lägg till auth här sen!
+// Lägg till auth?
 router.route('/')
   .get( async(req, res, next) => {
     try {
@@ -44,8 +44,9 @@ router.route('/:id')
 
 
 // Add a list
+// lägg till auth?
 router.route('/add')
-  .post(auth, async(req, res, next) => {
+  .post( async(req, res, next) => {
     try {
       const newList = new List({
         "user": req.body.user,
