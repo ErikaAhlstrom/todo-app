@@ -11,6 +11,7 @@ router.route('/')
       .then(users => res.json(users))
       .catch(err => res.status(400).json('Error: ' + err))
   })
+// Create a user
   .post( async (req, res, next) => {
     try {
       const {firstName, lastName, email, password } = req.body
@@ -30,8 +31,12 @@ router.route('/')
         })
       }
 
+      // Hash the password
+
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(password, salt)
+
+      // Save user account to the db
 
       const newUser = new User({
         "firstName": firstName,
@@ -42,6 +47,10 @@ router.route('/')
 
       const savedUser = await newUser.save();
       console.log(newUser)
+
+      // log the user in
+
+      
 
     } catch (err) {
       console.error(err);
