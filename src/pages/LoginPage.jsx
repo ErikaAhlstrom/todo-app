@@ -1,12 +1,17 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext'
+import {useContext} from 'react';
 
 export default function LoginPage() {
 
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const {getLoggedIn} = useContext(AuthContext)
+
 
     async function login(e) {
         e.preventDefault();
@@ -19,6 +24,7 @@ export default function LoginPage() {
             console.log(loginData);
 
             await axios.post("http://localhost:5000/auth/login", loginData);
+            getLoggedIn();
 
         } catch(err) {
 

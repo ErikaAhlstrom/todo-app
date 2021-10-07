@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
+import {useContext} from 'react';
 
 
 export default function RegisterPage() {
@@ -9,6 +11,8 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+
+    const {getLoggedIn} = useContext(AuthContext)
 
     async function register(e) {
         e.preventDefault();
@@ -23,6 +27,7 @@ export default function RegisterPage() {
             console.log(registerData);
 
             await axios.post("http://localhost:5000/auth", registerData);
+            getLoggedIn();
 
         } catch(err) {
 
