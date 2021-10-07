@@ -75,14 +75,14 @@ router.route('/')
 
   })
 
-// Get one user
+/* // Get one user
 router.route('/:id')
   .get((req, res, next) => {
     User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(err => res.status(400).json('Error: ' + err))
   })
-
+ */
 // Log in a user
 
 router.post("/login", async (req, res) => {
@@ -141,6 +141,16 @@ router.post("/login", async (req, res) => {
     console.error(err);
     res.status(500).send();
   }
-})
+});
+
+
+router.route('/logout')
+  .get((req, res) => {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    })
+  .send();
+  })
 
 module.exports = router;
