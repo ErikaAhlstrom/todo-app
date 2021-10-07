@@ -1,16 +1,30 @@
 
 const express = require('express');
 const router = express.Router();
-let List = require('../models/list.model')
+const List = require('../models/list.model')
+const auth = require("../middleware/auth")
 
 // Get all lists
+
 router.route('/')
+  .get(auth, async(req, res, next) => {
+    try {
+      const lists = await List.find();
+      res.json(lists);
+      
+    } catch (err) {
+      console.error(err);res.status(500).send()
+    }
+  })
+
+
+/* router.route('/')
   .get((req, res, next) => {
     List.find()
       .then(lists => res.json(lists))
       .catch(err => res.status(400).json('Error: ' + err))
   })
-
+ */
 // Get all lists for one user with user id
 
 router.route('/user/:id')
@@ -31,18 +45,23 @@ router.route('/:id')
 
 // Add a list
 router.route('/add')
-  .post((req, res, next) => {
+  .post(auth, async(req, res, next) => {
+    try {
+      const newList = new List({
+        "user": req.body.user,
+        "title": req.body.title,
+        "todos": req.body.todos
+      });
+  
+      const savedList = await newList.save()
 
-    const newList = new List({
-      "user": req.body.user,
-      "title": req.body.title,
-      "todos": req.body.todos
-    });
-
-    newList.save()
-      .then(() => res.json('New list added!'))
-      .catch(err => res.status(400).json('Error: ' + err)); 
+      res.json(savedList);
+      
+    } catch (err) {
+      console.error(err);res.status(500).send()
+    }
   })
+
 // Update a list with list id
 router.route('/update/:id')
   .post((req, res, next) => {
@@ -56,6 +75,7 @@ router.route('/update/:id')
           .catch(err => res.status(400).json('Error: ' + err)); 
       })
     })
+
 // Delete a list
 router.route('/:id')
   .delete((req, res, next) => {
