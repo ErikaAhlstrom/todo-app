@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 let User = require('../models/user.model')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
 
 
 // Get all users
@@ -11,7 +12,7 @@ router.route('/')
       .then(users => res.json(users))
       .catch(err => res.status(400).json('Error: ' + err))
   })
-// Create a user
+// Register a user
   .post( async (req, res, next) => {
     try {
       const {firstName, lastName, email, password } = req.body
@@ -48,9 +49,24 @@ router.route('/')
       const savedUser = await newUser.save();
       console.log(newUser)
 
-      // log the user in
+      // sign the token
 
-      
+      const token = jwt.sign(
+        {
+        user: savedUser._id
+        }, 
+      process.env.JWT_SECRET
+      );
+
+      console.log(token);
+
+      // send the token in a HTTP only cookie
+      // När cookien är set kommer den nu alltid skickas med till servern för att verifiera att personen är inloggad. Om jag fattat rätt?
+      res
+        .cookie("token", token, {
+          httpOnly: true
+        })
+        .send();
 
     } catch (err) {
       console.error(err);
@@ -67,8 +83,64 @@ router.route('/:id')
       .catch(err => res.status(400).json('Error: ' + err))
   })
 
-// Add a user
-router.route('/add')
-  
+// Log in a user
+
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+// Validations
+
+    if(!email || !password) {
+      return res
+        .status(400)
+        .json({errorMessage: "Please fill in all required fields"})
+    }
+
+    const existingUser = await User.findOne({email: email});
+    console.log(existingUser.email)
+
+    if(!existingUser) {
+      return res
+        .status(401)
+        .json({errorMessage: "Wrong email or password."})
+    }
+
+      const passwordCorrect = await bcrypt.compare(
+      password, 
+      existingUser.password
+    ); 
+
+   if(!passwordCorrect) {
+        return res
+        .status(401)
+        .json({errorMessage: "Wrong email or password."})
+    } 
+
+     // sign the token
+     
+      const token = jwt.sign(
+        {
+        user: existingUser._id
+        }, 
+      process.env.JWT_SECRET
+      );
+
+      console.log(token);
+
+      // send the token in a HTTP only cookie
+
+      res
+        .cookie("token", token, {
+          httpOnly: true
+        })
+        .send();
+
+
+  } catch(err) {
+    console.error(err);
+    res.status(500).send();
+  }
+})
 
 module.exports = router;
