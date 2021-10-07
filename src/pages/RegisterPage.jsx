@@ -1,7 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, {useState} from 'react'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 export default function RegisterPage() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
+    async function register(e) {
+        e.preventDefault();
+
+        try{
+            const registerData = {
+                firstName, 
+                lastName, 
+                email, 
+                password
+            }
+            console.log(registerData);
+
+            await axios.post("http://localhost:5000/auth", registerData)
+
+        } catch(err) {
+
+        }
+    }
+
+    
+
     return (
         
             <div className="loginPage">
@@ -9,24 +37,32 @@ export default function RegisterPage() {
                     <div className="login-header">
                         <h2>REGISTER</h2>
                     </div>
-                <form  action="">
+                <form onSubmit={register} action="">
                 <div className="login-card">
                     <input 
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstName}
                     className="login-input input"
                     name="firstName" 
                     placeholder="Firstname"
                     type="text"/>
                     <input 
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                     className="login-input input"
                     name="lastName" 
                     placeholder="Lastname"
                     type="text"/>
                     <input 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="login-input input"
                     name="email" 
                     placeholder="Email"
                     type="email"/>
                     <input 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="login-input input"
                     name="password" 
                     placeholder="Password"
