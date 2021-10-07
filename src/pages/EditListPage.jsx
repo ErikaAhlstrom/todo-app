@@ -72,7 +72,7 @@ export default function EditListPage(props) {
                     <form onSubmit={handleSubmit}>
                         <div className="create-list-header">
                             <input 
-                                value={list["title" || ""]}
+                                value={list.title || ""}
                                 className="create-title-input" 
                                 type="text"
                                 name="title"
