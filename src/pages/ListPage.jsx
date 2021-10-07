@@ -2,15 +2,18 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import ListItem from '../components/ListItem';
+import LogoutBtn from '../components/LogoutBtn';
 
 export default function ListPage({lists}) {
+
     return (
         <div className="listPage">
             <h1> Welcome, Erika</h1>
             <div className="lists-header">
                 <h2>Your Notes</h2>
+                <LogoutBtn />
                 <Link to='/list/create' className="btn new-note-btn btn-success">New Note</Link>
-                <Link to='/logout' className="btn new-note-btn btn-secondary">Logout</Link>
+                
             </div>   
 
             <div className="lists-container">
