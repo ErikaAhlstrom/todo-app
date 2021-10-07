@@ -5,9 +5,9 @@ const List = require('../models/list.model')
 const auth = require("../middleware/auth")
 
 // Get all lists
-
+// Lägg till auth här sen!
 router.route('/')
-  .get(auth, async(req, res, next) => {
+  .get( async(req, res, next) => {
     try {
       const lists = await List.find();
       res.json(lists);
