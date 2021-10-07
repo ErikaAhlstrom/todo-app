@@ -47,7 +47,7 @@ export default function CreateListPage() {
                         className="input create-title-input" 
                         type="text"
                         name="title"
-                        required="true" 
+                        required={true} 
                         id="create-title-input">
                         </input>
                 </div>
@@ -56,7 +56,7 @@ export default function CreateListPage() {
                     placeholder="Notes..."
                     className="input create-textarea"
                     id="create-todos-input"
-                    required="true" >
+                    required={true}  >
                 </textarea>
                 <div className="create-btn-container">
                     <Link to="/">
