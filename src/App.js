@@ -11,6 +11,7 @@ import { AuthContext } from './context/AuthContext';
 axios.defaults.withCredentials = true;
 
 const API_BASE = "http://localhost:5000"
+
 function App() {
 
 const [loggedIn, setLoggedIn] = useState(undefined);
@@ -23,21 +24,17 @@ useEffect(() => {
 
   async function getLoggedIn() {
       const loggedInRes = await axios.get(
-        "http://localhost:5000/auth/loggedIn"
+        API_BASE + "/auth/loggedIn"
       );
       setLoggedIn(loggedInRes.data);
     }
-  
-  
-  
-  const getLists = () => {
-    fetch(API_BASE + "/lists")
-    .then(res => res.json())
-    .then((data) => {
-      setLists(data)
-    })
-    .catch(err => console.log("Error: ", err))
-  }
+
+  async function getLists() {
+      const getListsRes = await axios.get(
+        API_BASE + "/lists"
+      );
+      setLists(getListsRes.data);
+    }
 
 
   return (
