@@ -11,8 +11,10 @@ export default function ListPage({lists}) {
             <h1> Welcome, Erika</h1>
             <div className="lists-header">
                 <h2>Your Notes</h2>
+                <div>
                 <LogoutBtn />
                 <Link to='/list/create' className="btn new-note-btn btn-success">New Note</Link>
+                </div>
                 
             </div>   
 
