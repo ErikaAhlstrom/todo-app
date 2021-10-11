@@ -6,14 +6,15 @@ const auth = require("../middleware/auth")
 
 // Get all lists
 // Lägg till auth?
-router.route('/')
-  .get( async(req, res, next) => {
+router.get('/', auth, async(req, res, next) => {
     try {
       const lists = await List.find();
-      res.json(lists);
+      
+      res.json(lists)
       
     } catch (err) {
-      console.error(err);res.status(500).send()
+      console.error(err);
+      res.status(500).send()
     }
   })
 
