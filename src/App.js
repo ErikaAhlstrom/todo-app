@@ -56,14 +56,13 @@ useEffect(() => {
 
         {loggedIn === true && (
           <>
-          <Route path="/list/create">
-            <CreateListPage></CreateListPage>
+          <Route path="/list/create" component={CreateListPage}>
           </Route>
 
           <Route path="/list/edit/:id" component={EditListPage}>
           </Route>
 
-          <Route path="/">
+          <Route exact path="/">
             <ListPage lists={lists}></ListPage>
           </Route>
           </>
