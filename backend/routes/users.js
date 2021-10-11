@@ -83,14 +83,13 @@ router.route('/:id')
       .catch(err => res.status(400).json('Error: ' + err))
   })
  */
-// Log in a user
 
+// Log in a user
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-// Validations
-
+    // Validations
     if(!email || !password) {
       return res
         .status(400)
@@ -117,8 +116,7 @@ router.post("/login", async (req, res) => {
         .json({errorMessage: "Wrong email or password."})
     } 
 
-     // sign the token
-     
+      // sign the token
       const token = jwt.sign(
         {
         user: existingUser._id
@@ -129,7 +127,6 @@ router.post("/login", async (req, res) => {
       console.log(token);
 
       // send the token in a HTTP only cookie
-
       res
         .cookie("token", token, {
           httpOnly: true

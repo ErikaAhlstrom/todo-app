@@ -5,7 +5,6 @@ const List = require('../models/list.model')
 const auth = require("../middleware/auth")
 
 // Get all lists
-// Lägg till auth?
 router.get('/', auth, async(req, res, next) => {
     try {
       const lists = await List.find();
@@ -19,15 +18,8 @@ router.get('/', auth, async(req, res, next) => {
   })
 
 
-/* router.route('/')
-  .get((req, res, next) => {
-    List.find()
-      .then(lists => res.json(lists))
-      .catch(err => res.status(400).json('Error: ' + err))
-  })
- */
-// Get all lists for one user with user id
 
+// Get all lists for one user with user id
 router.route('/user/:id')
   .get((req, res, next) => {
     List.find({
