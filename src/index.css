@@ -81,6 +81,10 @@ h3 {
   width: 100%;
 }
 
+.btn-logout {
+  margin-right: 10px;
+}
+
 .btn:hover {
   opacity: 0.8;
   transition: 0.5s;

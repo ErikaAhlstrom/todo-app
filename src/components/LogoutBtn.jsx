@@ -17,7 +17,7 @@ export default function LogoutBtn() {
 
     return (
         <button 
-        className="btn new-note-btn btn-secondary"
+        className="btn btn-logout new-note-btn btn-secondary"
         onClick={logout}>Logout</button>
     )
 }
