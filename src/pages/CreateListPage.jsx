@@ -1,22 +1,25 @@
-import React from 'react'
+import React from 'react';
 import { useHistory, Link } from "react-router-dom"; 
-import axios from 'axios';
+import { createListFetch } from '../fetches/fetches';
 
 
 export default function CreateListPage() {
-    const API_BASE = "http://localhost:5000"
-
     let history = useHistory()
 
     async function handleCreateList(title, todosArray) {
-        const newList = {
-            "title": title,
-            "todos": todosArray
-        }
-        const createdList = await axios.post(API_BASE + "/lists/add", newList)
+
+        try {
+            const newList = {
+                "title": title,
+                "todos": todosArray
+            }
+            createListFetch(newList)
+            history.push("/")
+            window.location.reload()
             
-        history.push("/")
-        window.location.reload()
+        } catch (err) {
+            console.log("Error: ", err)
+        }      
     }
 
     function handleSubmit(e) {
