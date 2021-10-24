@@ -1,10 +1,7 @@
 import axios from 'axios';
 
-// Middleware = Allows HTTP to set cookies
 axios.defaults.withCredentials = true;
-
 const url = axios.create({ baseURL: 'http://localhost:5000/' });
-
 
 
 /////// USER ////////
@@ -18,6 +15,7 @@ export const registerUserFetch = (payload) => url.post('auth', payload);
 /////// LIST ////////
 export const getSingleListFetch = (listId) => url.get(`lists/${listId}`);
 export const editSingleListFetch = (listId, payload) => url.post(`lists/update/${listId}`, payload);
+export const createListFetch = (payload) => url.post('lists/add', payload);
 export const deleteListFetch = (listId) => url.delete(`lists/${listId}`);
 export const getListsForOneUserFetch = () => url.get('lists');
 
