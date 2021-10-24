@@ -1,17 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment';
+import { deleteListFetch } from '../fetches/fetches'
 
 export default function ListItem({list}) {
-    function handleDeleteList() {
-        fetch(("http://localhost:5000/lists/" + list._id), {
-            method: "DELETE",
-        })
-            .then(console.log("List deleted!"))
-            .then(res => {
-                window.location.reload();
-            })
-            .catch(err => console.log("Error: ", err))
+    async function handleDeleteList() {
+      try {
+        await deleteListFetch(list._id)
+        window.location.reload();
+      } catch(err) {
+            console.error(err)
+        } 
     }
     return (
       

@@ -1,12 +1,12 @@
-import axios from 'axios';
 import React, {useState} from 'react'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import {useContext} from 'react';
+import { registerUserFetch } from '../fetches/fetches'
 
 
 export default function RegisterPage() {
-
+    const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -24,10 +24,10 @@ export default function RegisterPage() {
                 email, 
                 password
             }
-            console.log(registerData);
-
-            await axios.post("http://localhost:5000/auth", registerData);
+            await registerUserFetch(registerData);
             getLoggedIn();
+            history.push("/")
+            window.location.reload();
 
         } catch(err) {
 

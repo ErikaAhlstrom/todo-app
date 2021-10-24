@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import axios from 'axios';
 import { AuthContext } from './context/AuthContext';
+import { getLoggedInFetch, getListsForOneUserFetch } from './fetches/fetches'
 
 axios.defaults.withCredentials = true;
 
@@ -23,16 +24,12 @@ useEffect(() => {
 }, [])
 
   async function getLoggedIn() {
-      const loggedInRes = await axios.get(
-        API_BASE + "/auth/loggedIn"
-      );
+      const loggedInRes = await getLoggedInFetch()
       setLoggedIn(loggedInRes.data);
     }
 
   async function getLists() {
-      const getListsRes = await axios.get(
-        API_BASE + "/lists"
-      );
+      const getListsRes = await getListsForOneUserFetch()
       setLists(getListsRes.data);
     }
 

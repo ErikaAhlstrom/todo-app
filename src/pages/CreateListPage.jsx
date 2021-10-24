@@ -1,28 +1,22 @@
 import React from 'react'
 import { useHistory, Link } from "react-router-dom"; 
+import axios from 'axios';
+
 
 export default function CreateListPage() {
+    const API_BASE = "http://localhost:5000"
 
     let history = useHistory()
 
-    function handleCreateList(title, todosArray) {
+    async function handleCreateList(title, todosArray) {
         const newList = {
-            "user": "615712cf8eeaccf8d128b944",
             "title": title,
             "todos": todosArray
         }
-        fetch(("http://localhost:5000/lists/add"), {
-            method: "POST",
-            body: JSON.stringify(newList),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(res => {
-                history.push("/")
-                window.location.reload()
-            })
-            .catch(err => console.log("Error: ", err))
+        const createdList = await axios.post(API_BASE + "/lists/add", newList)
+            
+        history.push("/")
+        window.location.reload()
     }
 
     function handleSubmit(e) {

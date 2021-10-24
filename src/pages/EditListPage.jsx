@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory, Link } from "react-router-dom"; 
+import { getSingleListFetch, editSingleListFetch } from '../fetches/fetches'
 
 export default function EditListPage(props) {
     let history = useHistory()
@@ -21,36 +22,32 @@ export default function EditListPage(props) {
     }
 
 
-    function getList() {
-        fetch(`http://localhost:5000/lists/${list_id}`)
-            .then(res => res.json())
-            .then((data) => {
-                setList(data)
-                let input = data.todos.join("\r\n") 
-                setTextareaInput(input)
-            })
-            .catch(err => console.log("Error: ", err))            
-                
+    async function getList() {
+        try {
+            console.log("getList!")
+            const ListRes = await getSingleListFetch(list_id)
+            setList(ListRes.data)
+            let input = ListRes.data.todos.join("\r\n") 
+            setTextareaInput(input)
+            
+        } catch (err) {
+            console.log("Error: ", err)
+        }           
     }
 
-    function handleEditList(title, todosArray) {
-        const newList = {
-            "user": "615712cf8eeaccf8d128b944",
-            "title": title,
-            "todos": todosArray
-        }
-        fetch((`http://localhost:5000/lists/update/${list_id}`), {
-            method: "POST",
-            body: JSON.stringify(newList),
-            headers: {
-                "Content-Type": "application/json"
+    async function handleEditList(title, todosArray) {
+        try {
+            const newList = {
+                "title": title,
+                "todos": todosArray
             }
-        })
-            .then(res => {
-                history.push("/")
-                window.location.reload()
-            })
-            .catch(err => console.log("Error: ", err))
+            await editSingleListFetch(list_id, newList)
+            history.push("/")
+            window.location.reload()
+            
+        } catch (err) {
+            console.log("Error: ", err)
+        } 
     }
 
     function handleSubmit(e) {

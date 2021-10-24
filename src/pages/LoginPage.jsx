@@ -1,33 +1,30 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import {useContext} from 'react';
+import { loginUserFetch } from '../fetches/fetches'
 
 export default function LoginPage() {
-
-
+    const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const {getLoggedIn} = useContext(AuthContext)
 
 
     async function login(e) {
         e.preventDefault();
-
         try{
             const loginData = {
                 email, 
                 password
             }
-            console.log(loginData);
-
-            await axios.post("http://localhost:5000/auth/login", loginData);
+            await loginUserFetch(loginData)
             getLoggedIn();
+            history.push("/")
+            window.location.reload();
 
         } catch(err) {
-
+            console.error(err)
         }
     }
 

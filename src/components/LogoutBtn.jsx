@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext'
+import { logoutUserFetch } from '../fetches/fetches'
 
 export default function LogoutBtn() {
     
@@ -10,7 +11,7 @@ export default function LogoutBtn() {
     const history = useHistory();
 
     async function logout() {
-        await axios.get("http://localhost:5000/auth/logout");
+        await logoutUserFetch()
         await getLoggedIn();
         history.push("/login");
     }
