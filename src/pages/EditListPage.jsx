@@ -18,13 +18,11 @@ export default function EditListPage(props) {
         setList(newList);
         
         setTextareaInput(newList.todos)
-        console.log(list)
     }
 
 
     async function getList() {
         try {
-            console.log("getList!")
             const ListRes = await getSingleListFetch(list_id)
             setList(ListRes.data)
             let input = ListRes.data.todos.join("\r\n") 
