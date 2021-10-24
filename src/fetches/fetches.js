@@ -6,10 +6,11 @@ const url = axios.create({ baseURL: 'http://localhost:5000/' });
 
 /////// USER ////////
 export const editUser = (payload) => url.post('users/update', payload);
-export const getLoggedInFetch = () => url.get('auth/loggedIn');
-export const logoutUserFetch = () => url.get('auth/logout');
-export const loginUserFetch = (payload) => url.post('auth/login', payload);
-export const registerUserFetch = (payload) => url.post('auth', payload);
+export const getLoggedInFetch = () => url.get('users/loggedIn');
+export const getCurrentUser = () => url.get('users/current');
+export const logoutUserFetch = () => url.get('users/logout');
+export const loginUserFetch = (payload) => url.post('users/login', payload);
+export const registerUserFetch = (payload) => url.post('users/register', payload);
 
 
 /////// LIST ////////
