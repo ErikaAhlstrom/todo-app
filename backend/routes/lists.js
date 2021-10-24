@@ -3,11 +3,14 @@ const express = require('express');
 const router = express.Router();
 const List = require('../models/list.model')
 const auth = require("../middleware/auth")
+const checkUser = require('../utils/checkUser');
+
 
 // Get all lists
 router.get('/', auth, async(req, res, next) => {
     try {
-      const lists = await List.find();
+      let userId = checkUser(req.cookies.token)
+      const lists = await List.find({ user: userId });
       
       res.json(lists)
       
@@ -18,38 +21,29 @@ router.get('/', auth, async(req, res, next) => {
   })
 
 
-
-// Get all lists for one user with user id
-router.route('/user/:id')
-  .get((req, res, next) => {
-    List.find({
-      "user": req.params.id
-    })
-      .then(lists => res.json(lists))
-  })
-
-// Get one list with list id
+// Get one list with list listid
 router.route('/:id')
   .get((req, res, next) => {
-    List.findById(req.params.id)
+    const listId = req.params.id
+    List.findById(listId)
       .then(list => res.json(list))
   })
 
 
 // Add a list
 // lägg till auth?
-router.route('/add')
-  .post( async(req, res, next) => {
+router.post('/add', auth, async(req, res, next) => {
     try {
-      const newList = new List({
-        "user": req.body.user,
-        "title": req.body.title,
-        "todos": req.body.todos
+      const userId = checkUser(req.cookies.token)
+
+      const newList = await new List({
+        user: userId,
+        title: req.body.title,
+        todos: req.body.todos
       });
   
-      const savedList = await newList.save()
-
-      res.json(savedList);
+      newList.save()
+      res.send(newList)
       
     } catch (err) {
       console.error(err);res.status(500).send()
@@ -59,8 +53,8 @@ router.route('/add')
 // Update a list with list id
 router.route('/update/:id')
   .post((req, res, next) => {
-
-    List.findById(req.params.id)
+    const listId = req.params.id
+    List.findById(listId)
       .then(list => {
         list.title = req.body.title;
         list.todos = req.body.todos;
@@ -73,7 +67,8 @@ router.route('/update/:id')
 // Delete a list
 router.route('/:id')
   .delete((req, res, next) => {
-    List.findByIdAndDelete(req.params.id)
+    const listId = req.params.id
+    List.findByIdAndDelete(listId)
       .then(() => res.json('List deleted.'))
       .catch(err => res.status(400).json('Error: ' + err)); 
   })
