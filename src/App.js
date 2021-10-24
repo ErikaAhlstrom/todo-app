@@ -43,6 +43,10 @@ useEffect(() => {
         <Route path="/register" >
           <RegisterPage></RegisterPage>
         </Route>
+
+         <Route exact path="/">
+            <LoginPage></LoginPage>
+          </Route>
           </>
         )}
 
