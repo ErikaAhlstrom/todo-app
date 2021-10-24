@@ -4,11 +4,13 @@ import {Link} from 'react-router-dom'
 import ListItem from '../components/ListItem';
 import LogoutBtn from '../components/LogoutBtn';
 
-export default function ListPage({lists}) {
+export default function ListPage({lists, user}) {
+
+
 
     return (
         <div className="listPage">
-            <h1> Welcome, Erika</h1>
+            <h1> Welcome, {user.firstName}</h1>
             <div className="lists-header">
                 <h2>Your Notes</h2>
                 <div>

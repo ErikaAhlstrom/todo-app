@@ -6,15 +6,20 @@ import EditListPage from './pages/EditListPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { AuthContext } from './context/AuthContext';
-import { getLoggedInFetch, getListsForOneUserFetch } from './fetches/fetches'
+import { 
+  getLoggedInFetch, 
+  getListsForOneUserFetch,
+  getCurrentUserFetch } from './fetches/fetches'
 
 function App() {
 
 const [loggedIn, setLoggedIn] = useState(undefined);
 const [lists, setLists] = useState([]);
+const [user, setUser] = useState([]);
 
 useEffect(() => {
   getLists();
+  getUser();
   getLoggedIn();
 }, [])
 
@@ -26,6 +31,12 @@ useEffect(() => {
   async function getLists() {
       const getListsRes = await getListsForOneUserFetch()
       setLists(getListsRes.data);
+    }
+
+  async function getUser() {
+      const getUserRes = await getCurrentUserFetch()
+      setUser(getUserRes.data);
+      await console.log(user)
     }
 
 
@@ -59,7 +70,7 @@ useEffect(() => {
           </Route>
 
           <Route exact path="/">
-            <ListPage lists={lists}></ListPage>
+            <ListPage lists={lists} user={user}></ListPage>
           </Route>
           </>
         )}
