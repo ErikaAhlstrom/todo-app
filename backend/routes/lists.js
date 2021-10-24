@@ -9,7 +9,7 @@ const checkUser = require('../utils/checkUser');
 // Get all lists
 router.get('/', auth, async(req, res, next) => {
     try {
-      let userId = checkUser(req.cookies.token)
+      const userId = checkUser(req.cookies.token)
       const lists = await List.find({ user: userId });
       
       res.json(lists)
@@ -20,18 +20,14 @@ router.get('/', auth, async(req, res, next) => {
     }
   })
 
-
 // Get one list with list listid
-router.route('/:id')
-  .get((req, res, next) => {
+router.get('/:id', auth, async (req, res, next) => {
     const listId = req.params.id
     List.findById(listId)
       .then(list => res.json(list))
-  })
-
+})
 
 // Add a list
-// lägg till auth?
 router.post('/add', auth, async(req, res, next) => {
     try {
       const userId = checkUser(req.cookies.token)
@@ -48,11 +44,10 @@ router.post('/add', auth, async(req, res, next) => {
     } catch (err) {
       console.error(err);res.status(500).send()
     }
-  })
+})
 
 // Update a list with list id
-router.route('/update/:id')
-  .post((req, res, next) => {
+router.post('/update/:id', auth, async (req, res, next) => {
     const listId = req.params.id
     List.findById(listId)
       .then(list => {
@@ -62,16 +57,15 @@ router.route('/update/:id')
           .then(() => res.json('List Edited!'))
           .catch(err => res.status(400).json('Error: ' + err)); 
       })
-    })
+})
 
 // Delete a list
-router.route('/:id')
-  .delete((req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
     const listId = req.params.id
     List.findByIdAndDelete(listId)
       .then(() => res.json('List deleted.'))
       .catch(err => res.status(400).json('Error: ' + err)); 
-  })
+})
  
 
 module.exports = router;
