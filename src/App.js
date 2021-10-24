@@ -5,13 +5,8 @@ import CreateListPage from './pages/CreateListPage';
 import EditListPage from './pages/EditListPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import axios from 'axios';
 import { AuthContext } from './context/AuthContext';
 import { getLoggedInFetch, getListsForOneUserFetch } from './fetches/fetches'
-
-axios.defaults.withCredentials = true;
-
-const API_BASE = "http://localhost:5000"
 
 function App() {
 
