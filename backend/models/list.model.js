@@ -12,9 +12,9 @@ const listSchema = new Schema({
         required: true
 
     },
-    todos: [{
+    todos: {
         type: String,
-    }]
+    }
 
 }, {
     timestamps: true,
