@@ -34,12 +34,10 @@ h1 {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 32px;
-  color: var(--primary);
 }
 
 h2 {
   font-size: 20px;
-  color: var(--primary);
   text-transform: uppercase;
   font-weight: 400;
   margin-bottom: 32px;
@@ -188,7 +186,23 @@ h3 {
   min-width: 100%;
   border: none;
   border-radius: 5px;
-  height: 55vh;
+  height: 15vh;
+}
+
+.markdown {
+  color: var(--light);
+  list-style-position: inside;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  min-width: 100%;
+  border: 2px solid var(--light);
+  border-radius: 5px;
+  height: 35vh;
+  background-color: var(--primary);
+  overflow-y: scroll;
+  overflow-x: hidden
 }
 
 .input:focus {
