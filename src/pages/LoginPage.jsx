@@ -34,7 +34,7 @@ export default function LoginPage() {
             <div className="loginPage">
                 <div className="login-container">
             <div className="login-header">
-                <h2>LOGIN</h2>
+                <h2 className="header-2">LOGIN</h2>
             </div>
             <form  onSubmit={login} action="">
                 <div className="login-card">

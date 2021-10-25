@@ -62,7 +62,7 @@ export default function EditListPage(props) {
     return (
         <>
             <div className="listPage">
-                <h1> Edit your note</h1>
+                <h1 className="header-1"> Edit your note</h1>
                 <div className="create-list">
                     <form onSubmit={handleSubmit}>
                         <div className="create-list-header">

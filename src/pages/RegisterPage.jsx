@@ -41,7 +41,7 @@ export default function RegisterPage() {
             <div className="loginPage">
                 <div className="login-container">
                     <div className="login-header">
-                        <h2>REGISTER</h2>
+                        <h2 className="header-2">REGISTER</h2>
                     </div>
                 <form onSubmit={register} action="">
                 <div className="login-card">
