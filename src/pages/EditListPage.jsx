@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory, Link } from "react-router-dom"; 
 import { getSingleListFetch, editSingleListFetch } from '../fetches/fetches'
+import ReactMarkdown from 'react-markdown';
+
 
 export default function EditListPage(props) {
     let history = useHistory()
     const list_id = props.match.params.id
     const [list, setList] = useState([]);
-    const [textareaInput, setTextareaInput] = useState([]);
 
     useEffect(() => {
         getList();
@@ -16,8 +17,6 @@ export default function EditListPage(props) {
 
         let newList = {...list, [e.target.name]: e.target.value}
         setList(newList);
-        
-        setTextareaInput(newList.todos)
     }
 
 
@@ -25,19 +24,21 @@ export default function EditListPage(props) {
         try {
             const ListRes = await getSingleListFetch(list_id)
             setList(ListRes.data)
-            let input = ListRes.data.todos.join("\r\n") 
-            setTextareaInput(input)
+            console.log(list)
             
         } catch (err) {
             console.log("Error: ", err)
         }           
     }
 
-    async function handleEditList(title, todosArray) {
+
+    async function handleSubmit(e) {
+
         try {
+            e.preventDefault();
             const newList = {
-                "title": title,
-                "todos": todosArray
+                title: list.title,
+                todos: list.todos
             }
             await editSingleListFetch(list_id, newList)
             history.push("/")
@@ -48,26 +49,15 @@ export default function EditListPage(props) {
         } 
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        const title = document.getElementById("edit-title-input").value;
-        const todos = document.getElementById("edit-todos-input").value;
-
-        // Splittar text area på "newline" och skapar ett arrayitem för varje rad.
-        const todosArray = todos.split(/\r?\n/);
-
-        handleEditList(title, todosArray);
-    }
-
     return (
         <>
             <div className="listPage">
-                <h1 className="header-1"> Edit your note</h1>
+                <h1 className="header-1">Edit your note</h1>
                 <div className="create-list">
                     <form onSubmit={handleSubmit}>
                         <div className="create-list-header">
                             <input 
-                                value={list.title || ""}
+                                value={list?.title}
                                 className="create-title-input" 
                                 type="text"
                                 name="title"
@@ -78,12 +68,14 @@ export default function EditListPage(props) {
                         </div>
                         <textarea 
                             name="todos"
-                            value={textareaInput || ""}
+                            value={list?.todos}
                             onChange={handleOnChange}
                             className="create-textarea"
                             id="edit-todos-input"
-                            required={true} >
+                            required={true} 
+                            >
                         </textarea>
+                        <ReactMarkdown className="markdown" >{list.todos}</ReactMarkdown>
                         <div className="create-btn-container">
                             <Link to="/">
                                 <button className="btn btn-secondary">Back</button>
