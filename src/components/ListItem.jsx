@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment';
 import { deleteListFetch } from '../fetches/fetches'
+import ReactMarkdown from 'react-markdown';
 
 export default function ListItem({list}) {
     async function handleDeleteList() {
@@ -24,9 +25,9 @@ export default function ListItem({list}) {
           </div>
           <hr className="list-line"></hr>
             <div className="text">
-                {list.todos.map(todo => (
-                    <p key={[todo]}>{todo}</p>
-                ))}
+              <ReactMarkdown>
+                {list.todos}
+              </ReactMarkdown>    
             </div>
           <p className="list-date">{
             <Moment format="MMM Do hh:mm">{list.updatedAt}</Moment>}
