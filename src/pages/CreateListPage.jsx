@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from "react-router-dom"; 
 import { createListFetch } from '../fetches/fetches';
+import ReactMarkdown from 'react-markdown';
+import ReactDom from 'react-dom'
 
 
 export default function CreateListPage() {
-    let history = useHistory()
+    const history = useHistory()
+    const [input, setInput] = useState();
 
     async function handleCreateList(title, todosArray) {
 
@@ -33,6 +36,12 @@ export default function CreateListPage() {
         handleCreateList(title, todosArray);
     }
 
+    function handleOnChange(e) {
+
+        setInput(e.target.value)
+        console.log(input)
+    }
+
     return (
         <div className="listPage">
             <h1> Add new note</h1>
@@ -50,11 +59,12 @@ export default function CreateListPage() {
                 </div>
                 <textarea 
                     name="todos"
-                    placeholder="Notes..."
+                    placeholder="Markdown"
                     className="input create-textarea"
                     id="create-todos-input"
-                    required={true}  >
+                    onChange={handleOnChange}>
                 </textarea>
+                <ReactMarkdown className="markdown" >{input}</ReactMarkdown>
                 <div className="create-btn-container">
                     <Link to="/">
                         <button className="btn btn-secondary">Back</button>
