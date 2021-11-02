@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const auth = require("../middleware/auth")
 const checkUser = require('../utils/checkUser');
+const {checkEmptyFieldsRegister, checkEmptyFieldsLogin, checkPasswordLength} = require('../utils/validationUser')
 
 
 // Register a user
@@ -12,11 +13,14 @@ router.post('/register', async (req, res, next) => {
   try {
     const {firstName, lastName, email, password } = req.body
 
-    if(!email || !password) {
-      return res.status(400).json({errorMessage: "Please fill in all required fields"})
-    }
+    if (!checkEmptyFieldsRegister(email, password, firstName, lastName)) 
+      {
+        return res
+          .status(400)
+          .json({errorMessage: "Please fill in all required fields"})
+      }
 
-    if(password.length < 6) {
+    if(!checkPasswordLength(password)) {
       return res.status(400).json({errorMessage: "Please enter a password with at least 6 characters."})
     }
 
@@ -87,7 +91,7 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
 
     // Validations
-    if(!email || !password) {
+    if(!checkEmptyFieldsLogin(email, password)) {
       return res
         .status(400)
         .json({errorMessage: "Please fill in all required fields"})
