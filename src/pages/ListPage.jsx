@@ -14,7 +14,6 @@ export default function ListPage({lists, user}) {
             <div className="lists-header">
                 {lists.length > 0 
                 ? 
-
                 <h2 className="header-2">Your Notes</h2>
                 : 
                <h2 className="header-2">No notes to show yet...</h2>}
@@ -29,7 +28,7 @@ export default function ListPage({lists, user}) {
                 :
                 <div className="lists-container">
                     {lists.map(list => (
-                            <ListItem key={list._id} list={list}/>
+                        <ListItem key={list._id} list={list}/>
                     ))}
                 </div>
                 }
