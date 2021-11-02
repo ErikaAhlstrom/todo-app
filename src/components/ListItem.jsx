@@ -17,7 +17,7 @@ export default function ListItem({list}) {
       
         <div className="list">
           <div className="list-header">
-            <h3 className="header-3">{list?.title}</h3>
+            <h1 className="header-3">{list?.title}</h1>
             <div className="list-action-btns">
               <Link to={`/list/edit/${list._id}`} className= "list-edit-btn" href="#"><i className='bx bx-edit-alt'></i></Link>
               <i className='list-delete-btn bx bx-trash' onClick={handleDeleteList}></i>
