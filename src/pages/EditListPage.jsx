@@ -14,7 +14,6 @@ export default function EditListPage(props) {
     }, [])
 
     function handleOnChange(e) {
-
         let newList = {...list, [e.target.name]: e.target.value}
         setList(newList);
     }
