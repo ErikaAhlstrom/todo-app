@@ -1,35 +1,35 @@
-# TODO APP FOR SCHOOL PROJECT
+# Todo app for a school project
 
-## Stack
+The assignment was to build a MERN-stack todo app similar to google notes. 
 
-### This project is built with mern-stack:
+# Stack
 
 - MongoDB (Atlas Cloud, Azure)
 - Express
 - React
 - NodeJS
 
-### Other Packeges used in this project:
-
-- 'Moment' for date handling
-- 'cors'
-- 'dotenv'
-- 'mongoose'
-- 'nodemon'
-
+# Start the app
 ## Start client side
 
 In the project directory run:
+`npm start`
 
-### `npm start`
+Runs the app in the development mode.
 
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
 
-## Start clieservernt side
+## Start server side
 
 In the backend directory run:
+`npx nodemon start`
+# Deployment
+## Frontend deployed at
 
-### `npx nodemon start`
+[https://to-do-mern-app.netlify.app/]
+
+## Backend deployed at
+
+[https://evil-dungeon-89976.herokuapp.com/]
