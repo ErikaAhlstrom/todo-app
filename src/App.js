@@ -44,9 +44,10 @@ useEffect(() => {
     <div className="app">
       <AuthContext.Provider value={{loggedIn, setLoggedIn, getLoggedIn}}>
       <Switch>
-
-        {loggedIn === false && (
-          <>
+          <Route path="/">
+            <LoginPage></LoginPage>
+          </Route>
+          
         <Route path="/login" >
           <LoginPage></LoginPage>
         </Route>   
@@ -54,12 +55,6 @@ useEffect(() => {
         <Route path="/register" >
           <RegisterPage></RegisterPage>
         </Route>
-
-         <Route exact path="/">
-            <LoginPage></LoginPage>
-          </Route>
-          </>
-        )}
 
         {loggedIn === true && (
           <>
