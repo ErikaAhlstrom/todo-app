@@ -4,7 +4,7 @@ const auth = require("../middleware/auth")
 const listController = require('../controllers/listController')
 
 
-router.get('/', auth,listController.getAllLists)
+router.get('/',listController.getAllLists)
 router.get('/:id', auth, listController.getOneList)
 router.post('/add', auth, listController.addOneList)
 router.post('/update/:id', auth, listController.updateOneList)
