@@ -32,4 +32,4 @@ In the backend directory run:
 
 ## Backend deployed at
 
-[https://evil-dungeon-89976.herokuapp.com/]
+[https://mern-jwt-notes-app.herokuapp.com/]
