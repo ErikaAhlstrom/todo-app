@@ -8,27 +8,36 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+// Connect to Mongo DB Atlas Cloud
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {useNewUrlParser: true});
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('MongoDB Database connection established successfully!');
+})
+
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const listsRouter = require('./routes/lists');
 
 const app = express();
-const port = process.env.PORT || 5000
+// const port = process.env.PORT || 5000
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
 
 //Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://to-do-mern-app.netlify.app"],
+    origin: ["https://to-do-mern-app.netlify.app", "http://localhost:3001"],
     credentials: true,
   })
-);
-
+  );
+  
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -55,16 +64,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Connect to Mongo DB Atlas Cloud
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUrlParser: true});
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log('MongoDB Database connection established successfully!');
-})
 
-app.listen(port, () => {
+/* app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
 })
-
+ */
 module.exports = app;
