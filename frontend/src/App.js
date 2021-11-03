@@ -44,9 +44,6 @@ useEffect(() => {
     <div className="app">
       <AuthContext.Provider value={{loggedIn, setLoggedIn, getLoggedIn}}>
       <Switch>
-          <Route path="/">
-            <LoginPage></LoginPage>
-          </Route>
           
         <Route path="/login" >
           <LoginPage></LoginPage>
@@ -69,6 +66,10 @@ useEffect(() => {
           </Route>
           </>
         )}
+
+        <Route path="/" >
+          <LoginPage></LoginPage>
+        </Route>  
 
 
       </Switch>
