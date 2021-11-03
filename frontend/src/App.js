@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
+import axios from 'axios';
 import ListPage from './pages/ListPage';
 import CreateListPage from './pages/CreateListPage';
 import EditListPage from './pages/EditListPage';
@@ -10,6 +11,8 @@ import {
   getLoggedInFetch, 
   getListsForOneUserFetch,
   getCurrentUserFetch } from './fetches/fetches'
+
+axios.defaults.withCredentials = true;
 
 function App() {
 
