@@ -22,6 +22,7 @@ const usersRouter = require('./routes/users');
 const listsRouter = require('./routes/lists');
 
 const app = express();
+app.set("trust proxy", 1);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,7 +32,7 @@ app.set('view engine', 'hbs');
 //Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://mern-jwt-notes-app-client.herokuapp.com", "https://to-do-mern-app.netlify.app" ],
+    origin: ["https://mern-jwt-notes-app-client.herokuapp.com", "http://localhost:3001",  "https://to-do-mern-app.netlify.app" ],
     credentials: true,
   })
   );
