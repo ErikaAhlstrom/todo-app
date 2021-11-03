@@ -31,7 +31,7 @@ app.set('view engine', 'hbs');
 //Middlewares
 app.use(
   cors({
-    origin: ["https://to-do-mern-app.netlify.app", "http://localhost:3001"],
+    origin: ["https://mern-jwt-notes-app-client.herokuapp.com", "https://to-do-mern-app.netlify.app", "http://localhost:3001"],
     credentials: true,
   })
   );
