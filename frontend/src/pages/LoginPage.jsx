@@ -9,6 +9,7 @@ export default function LoginPage() {
     const history = useHistory();
     const {getLoggedIn} = useContext(AuthContext)
     const [loginValue, setLoginValue] = useState({})
+    const [message, setMessage] = useState(null)
 
 
     async function handleOnSubmit(e) {
@@ -20,7 +21,7 @@ export default function LoginPage() {
             window.location.reload();
 
         } catch(err) {
-            console.error(err)
+            setMessage(err.response.data.errorMessage)
         }
     }
   const handleOnChange = (e) => {
@@ -38,6 +39,7 @@ export default function LoginPage() {
            <LoginForm handleOnChange={handleOnChange} handleOnSubmit={handleOnSubmit}/>
             <p className="register-text">Don't have an account yet?</p>
             <Link className="register-link" to="/register">Register</Link>
+            {message && <div className="message">{message}</div>}
             </div>
         </div>
     )

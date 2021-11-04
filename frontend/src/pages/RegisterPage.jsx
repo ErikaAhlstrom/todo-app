@@ -11,6 +11,7 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [message, setMessage] = useState(null)
 
     const {getLoggedIn} = useContext(AuthContext)
 
@@ -30,7 +31,7 @@ export default function RegisterPage() {
             window.location.reload();
 
         } catch(err) {
-
+            setMessage(err.response.data.errorMessage)
         }
     }
 
@@ -79,6 +80,7 @@ export default function RegisterPage() {
                     type="submit" 
                     value="Register" />
             </form>
+            {message && <div className="message">{message}</div>}
             <p className="register-text">Already have an account?</p>
             <Link className="register-link" to="/login">Login</Link>
             </div>
