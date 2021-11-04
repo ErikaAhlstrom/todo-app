@@ -72,16 +72,16 @@ h1 {
 
 .btn-primary {
   background: var(--primary);
-  background: linear-gradient(3deg, var(--primary) 0%, var(--primary-light) 99%);
+  background: linear-gradient(3deg, var(--primary-light) 0%, var(--primary) 99%);
 }
 .btn-secondary {
   background: var(--danger);
-  background: linear-gradient(3deg, var(--danger) 0%, var(--danger-light) 90%);
+  background: linear-gradient(3deg, var(--danger-light) 0%, var(--danger) 90%);
 }
 
 .btn-success {
   background: var(--success);
-  background: linear-gradient(3deg, var(--success) 0%, var(--success-light) 90%);}
+  background: linear-gradient(3deg, var(--success-light) 0%, var(--success) 90%);}
 
 .new-note-btn {
   margin-bottom: 10px;
@@ -110,7 +110,7 @@ h1 {
 
 .login-card {
   background: var(--primary);
-  background: linear-gradient(3deg, var(--primary) 0%, var(--primary-light) 97%);
+  background: linear-gradient(3deg, var(--primary-light) 0%, var(--primary) 97%);
   padding: 30px;
   margin: 20px 0px;
   border-radius: 10px;
@@ -142,7 +142,7 @@ h1 {
 
 .list {
   background: var(--primary);
-  background: radial-gradient(circle, var(--primary) 0%, var(--primary-light) 94%);
+  background: linear-gradient(3deg, var(--primary) 0%, var(--primary-light) 94%);
   padding: 30px;
   margin: 20px 0px;
   border-radius: 10px;
@@ -229,7 +229,6 @@ h1 {
   justify-content: space-between;
 }
 
-
 .list-action-btns {
   display: flex;
   justify-content: space-between;
@@ -261,4 +260,13 @@ h1 {
 .list-date {
   display: flex;
   justify-content: flex-end;
+}
+
+.message {
+  background: var(--danger);
+  background: linear-gradient(3deg, var(--danger-light) 0%, var(--danger) 90%);
+  color: var(--light);
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 10px;
 }
