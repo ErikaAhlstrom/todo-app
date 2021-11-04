@@ -3,22 +3,18 @@ import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import {useContext} from 'react';
 import { loginUserFetch } from '../fetches/fetches'
+import  LoginForm  from '../components/LoginForm'
 
 export default function LoginPage() {
     const history = useHistory();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const {getLoggedIn} = useContext(AuthContext)
+    const [loginValue, setLoginValue] = useState({})
 
 
-    async function login(e) {
+    async function handleOnSubmit(e) {
         e.preventDefault();
         try{
-            const loginData = {
-                email, 
-                password
-            }
-            await loginUserFetch(loginData)
+            await loginUserFetch(loginValue)
             getLoggedIn();
             history.push("/")
             window.location.reload();
@@ -27,6 +23,9 @@ export default function LoginPage() {
             console.error(err)
         }
     }
+  const handleOnChange = (e) => {
+    setLoginValue({ ...loginValue, [e.target.name]: e.target.value })
+  }
 
     
     return (
@@ -36,28 +35,7 @@ export default function LoginPage() {
             <div className="login-header">
                 <h2 className="header-2">LOGIN</h2>
             </div>
-            <form  onSubmit={login} action="">
-                <div className="login-card">
-                    <input 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="login-input input"
-                    name="email" 
-                    placeholder="Email"
-                    type="email"/>
-                    <input 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="login-input input"
-                    name="password" 
-                    placeholder="Password"
-                    type="password"/>
-                </div>
-                <input 
-                    className="btn btn-primary btn-login"
-                    type="submit" 
-                    value="Login" />
-            </form>
+           <LoginForm handleOnChange={handleOnChange} handleOnSubmit={handleOnSubmit}/>
             <p className="register-text">Don't have an account yet?</p>
             <Link className="register-link" to="/register">Register</Link>
             </div>
