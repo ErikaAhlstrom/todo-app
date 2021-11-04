@@ -23,7 +23,6 @@ export default function EditListPage(props) {
         try {
             const ListRes = await getSingleListFetch(list_id)
             setList(ListRes.data)
-            console.log(list)
             
         } catch (err) {
             console.log("Error: ", err)

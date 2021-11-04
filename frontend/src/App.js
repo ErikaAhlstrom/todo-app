@@ -39,7 +39,6 @@ useEffect(() => {
   async function getUser() {
       const getUserRes = await getCurrentUserFetch()
       setUser(getUserRes.data);
-      await console.log(user)
     }
 
 

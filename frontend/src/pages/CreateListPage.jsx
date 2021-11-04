@@ -26,7 +26,6 @@ export default function CreateListPage() {
     function handleOnChange(e) {
         let newList = {...list, [e.target.name]: e.target.value}
         setList(newList);
-        console.log(newList)
     }
 
     return (
