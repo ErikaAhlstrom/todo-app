@@ -16,7 +16,7 @@ export default function ListPage({lists, user}) {
                 ? 
                 <h2 className="header-2">Your Notes</h2>
                 : 
-               <h2 className="header-2">No notes to show yet...</h2>}
+               <h2 className="header-2">You haven't got any notes yet</h2>}
                 <div>
                 <LogoutBtn />
                 <Link to='/list/create' className="btn new-note-btn btn-success">New Note</Link>
@@ -24,7 +24,7 @@ export default function ListPage({lists, user}) {
                 
             </div>   
                 {lists.length === 0 ?
-                <button className="btn btn-primary">Create your first note</button>
+                <a href="/list/create" className="btn btn-primary">Create your first note</a>
                 :
                 <div className="lists-container">
                     {lists.map(list => (
