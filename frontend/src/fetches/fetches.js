@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-// const url = axios.create({ baseURL: 'http://localhost:5000/' });
-const url = axios.create({ baseURL: 'https://mern-jwt-notes-app.herokuapp.com'});
+const url = axios.create({ baseURL: 'http://localhost:5000/' });
+// const url = axios.create({ baseURL: 'https://mern-jwt-notes-app.herokuapp.com'});
 
 
 /////// USER ////////
