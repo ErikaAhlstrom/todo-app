@@ -27,12 +27,8 @@ exports.registerUser = async (req, res) => {
       });
     }
 
-    // Hash the password
-
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-
-    // Save user account to the db
 
     const newUser = new User({
       firstName,
@@ -43,8 +39,6 @@ exports.registerUser = async (req, res) => {
 
     const savedUser = await newUser.save();
 
-    // sign the token
-
     const token = jwt.sign(
       {
         user: savedUser._id,
@@ -52,7 +46,6 @@ exports.registerUser = async (req, res) => {
       process.env.JWT_SECRET,
     );
 
-    // send the token in a HTTP only cookie
     return res
       .cookie('token', token, {
         httpOnly: true,
@@ -70,7 +63,6 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validations
     if (!checkEmptyFieldsLogin(email, password)) {
       return res
         .status(400)
@@ -96,7 +88,6 @@ exports.loginUser = async (req, res) => {
         .json({ errorMessage: 'Wrong email or password.' });
     }
 
-    // sign the token
     const token = jwt.sign(
       {
         user: existingUser._id,
@@ -104,7 +95,6 @@ exports.loginUser = async (req, res) => {
       process.env.JWT_SECRET,
     );
 
-    // send the token in a HTTP only cookie
     return res
       .cookie('token', token, {
         httpOnly: true,
