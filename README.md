@@ -1,6 +1,6 @@
 # Todo app for a school project
 
-The assignment was to build a MERN-stack todo app similar to google notes. 
+The assignment was to build a MERN-stack todo/notes app similar to google notes. 
 
 # Stack
 
@@ -28,7 +28,7 @@ In the backend directory run:
 # Deployment
 ## Frontend deployed at
 
-[https://to-do-mern-app.netlify.app/]
+[https://mern-jwt-notes-app-client.herokuapp.com]
 
 ## Backend deployed at
 
