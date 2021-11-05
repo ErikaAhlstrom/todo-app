@@ -33,3 +33,17 @@ In the backend directory run:
 ## Backend deployed at
 
 [https://mern-jwt-notes-app.herokuapp.com/]
+
+# Testing
+
+## Run client side unit test on login form
+`cd frontend`
+`npm test LoginForm.test.js`
+
+## Run server side unit test on user validation
+`cd backend`
+`npx jest`
+
+## Run server side eslint
+`cd backend`
+`npx eslint .`
