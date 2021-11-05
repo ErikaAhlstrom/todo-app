@@ -133,7 +133,6 @@ exports.checkIfLoggedIn = async (req, res) => {
     jwt.verify(token, process.env.JWT_SECRET);
     res.send(true);
   } catch (err) {
-    console.log(err);
     res.json(false);
   }
 };

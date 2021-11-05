@@ -12,7 +12,6 @@ function auth(req, res, next) {
 
     next();
   } catch (err) {
-    console.log(err);
     res.staus(401).json({ errorMessage: 'Unauthorized' });
   }
 }
