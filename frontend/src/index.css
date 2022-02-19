@@ -1,6 +1,8 @@
 :root {
-  --primary: #383a39;
-  --primary-light: rgb(86, 89, 89);
+  --primary: #4928ef;
+  --primary-light: #7760eb;
+  --grey: #383a39;
+  --grey-light: rgb(86, 89, 89);
   --success: #4928ef;
   --success-light: #7760eb;
   --secondary: #7c559f;
@@ -8,7 +10,8 @@
   --danger: #df34a3;
   --danger-light: #f671c7;
   --dark: #13261c;
-  --text: #28322f;
+  --text-light: #EEE;
+  --text-dark: #28322f;
 }
 
 * {
@@ -20,7 +23,7 @@
 
 body {
   background-color: var(--light);
-  color: var(--text);
+  color: var(--text-dark);
 }
 
 .app {
@@ -29,7 +32,7 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--light);
+  color: var(--text-light);
 }
 
 h1 {
@@ -38,8 +41,8 @@ h1 {
 
 }
 
-label {
-  color: var(--light);
+.input-label {
+  color: var(--text-light);
   margin-bottom: 16px;
 }
 
@@ -52,28 +55,28 @@ label {
   font-size: 2em;
   font-weight: 700;
   margin-bottom: 32px;
-  color: var(--primary);
+  color: var(--grey);
 }
 
 .header-2 {
   font-size: 20px;
-  color: var(--primary);
+  color: var(--grey);
   text-transform: uppercase;
   font-weight: 400;
   margin-top: 1rem;
 }
 
 .header-3 {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 700;
   margin-bottom: 12px;
 }
 
 .btn {
-  color: var(--light);
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 10px;
+  color: var(--text-light);
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.5s;
   border: none;
@@ -146,13 +149,13 @@ label {
 .lists-container {
   display: flex;
   flex-direction: column;
-  color: var(--light);
+  color: var(--text-light);
   
 }
 
 .list {
   background: var(--primary);
-  background: linear-gradient(3deg, var(--primary) 0%, var(--primary-light) 94%);
+  background: linear-gradient(3deg, var(--grey) 0%, var(--grey-light) 94%);
   padding: 30px;
   margin: 20px 0px;
   border-radius: 10px;
@@ -161,8 +164,7 @@ label {
 }
 
 .create-list {
-  background: var(--primary);
-  background: linear-gradient(3deg, var(--primary) 0%, var(--primary-light) 99%);
+  background: linear-gradient(3deg, var(--grey) 0%, var(--grey-light) 99%);
   padding: 30px;
   margin: 20px 0px;
   border-radius: 10px;
@@ -178,8 +180,8 @@ label {
 }
 
 .input {
-  color: var(--primary);
-  font-size: 20px;
+  color: var(--grey);
+  font-size: 16px;
   padding: 5px 10px;
   margin: 10px 0px;
   width: 100%;
@@ -188,8 +190,8 @@ label {
 }
 
 .create-title-input {
-  color: var(--primary);
-  font-size: 20px;
+  color: var(--grey);
+  font-size: 16px;
   padding: 5px 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -198,13 +200,13 @@ label {
 }
 
 .input::placeholder {
-    color: var(--primary-light);
+    color: var(--grey-light);
     opacity: 1; 
 }
 
 .create-textarea {
-  color: var(--primary);
-  font-size: 20px;
+  color: var(--grey);
+  font-size: 16px;
   padding: 5px 10px;
   margin-bottom: 10px;
   max-width: 100%;
@@ -215,7 +217,7 @@ label {
 }
 
 .markdown {
-  color: var(--light);
+  color: var(--text-light);
   list-style-position: inside;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -242,13 +244,13 @@ label {
   justify-content: space-between;
 }
 .list-edit-btn {
-  color: var(--light);
+  color: var(--text-light);
   font-size: 25px;
   margin-right: 10px;
   transition: all .2s ease-in-out;
 }
 .list-delete-btn {
-  color: var(--light);
+  color: var(--text-light);
   font-size: 25px;
   transition: all .2s ease-in-out;
 }
@@ -259,7 +261,7 @@ label {
 }
 
 .list-line {
-  border-top: 0.5px solid var(--light);
+  border-top: 0.5px solid var(--text-dark);
   width: 20%;
   margin-bottom: 10px;
 
@@ -273,8 +275,26 @@ label {
 .message {
   background: var(--danger);
   background: linear-gradient(3deg, var(--danger-light) 0%, var(--danger) 90%);
-  color: var(--light);
+  color: var(--text-light);
   margin: 1rem 0;
   padding: 2rem;
   border-radius: 10px;
+}
+
+
+@media (min-width: 700px) {
+  body {
+    background-color: #EEE;
+  }
+  .listPage {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .lists-container {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   row-gap: 16px;
+   column-gap: 16px;
+  }
 }
