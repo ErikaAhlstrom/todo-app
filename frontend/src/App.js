@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Helmet } from "react-helmet";
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 import ListPage from './pages/ListPage';
@@ -44,6 +45,10 @@ useEffect(() => {
 
   return (
     <div className="app">
+       <Helmet>
+                <meta charSet="utf-8" />
+                <title>Notes App</title>
+            </Helmet>
       <AuthContext.Provider value={{loggedIn, setLoggedIn, getLoggedIn}}>
       <Switch>
         {loggedIn === false && (
