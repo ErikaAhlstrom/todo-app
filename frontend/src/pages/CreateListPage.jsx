@@ -31,10 +31,20 @@ export default function CreateListPage() {
     return (
         <div className="listPage">
             <h1 className="header-1"> New note</h1>
+            <div className="create-btn-container">
+                <Link className="btn btn-secondary" to="/">
+                    Back
+                </Link>
+                <input 
+                    className="btn btn-success"
+                    type="submit" 
+                    value="Save" 
+                />
+            </div>
          <div className="create-list">
             <form onSubmit={handleSubmit}>
                 <div className="create-list-header">
-                    <label htmlFor="create-title-input">Title</label>
+                    <label className="input-label" htmlFor="create-title-input">Title</label>
                     <input 
                         onChange={handleOnChange}
                         className="input create-title-input" 
@@ -44,25 +54,17 @@ export default function CreateListPage() {
                         id="create-title-input">
                     </input>
                 </div>
-                <label htmlFor='create-todos-input'>Content | Markdown</label>
+                <label className="input-label" htmlFor='create-todos-input'>Content | Markdown</label>
                 <textarea 
                     name="todos"
                     className="input create-textarea"
                     id="create-todos-input"
                     onChange={handleOnChange}>
                 </textarea>
-                <label htmlFor='create-todos-input'>Preview</label>
+                <label className="input-label" htmlFor='create-todos-input'>Preview</label>
 
                 <ReactMarkdown className="markdown" >{list.todos}</ReactMarkdown>
-                <div className="create-btn-container">
-                    <Link className="btn btn-secondary" to="/">
-                        Back
-                    </Link>
-                <input 
-                    className="btn btn-success"
-                    type="submit" 
-                    value="Save" />
-                </div>
+            
             </form>
         </div>
         </div>
