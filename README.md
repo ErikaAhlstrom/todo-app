@@ -1,6 +1,6 @@
 # Todo app for a school project
 
-The assignment was to build a MERN-stack todo/notes app similar to google notes. 
+The assignment was to build a MERN-stack todo/notes app similar to google keep. 
 
 # Stack
 
