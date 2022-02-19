@@ -30,13 +30,13 @@ export default function CreateListPage() {
 
     return (
         <div className="listPage">
-            <h1 className="header-1"> Add new note</h1>
+            <h1 className="header-1"> New note</h1>
          <div className="create-list">
             <form onSubmit={handleSubmit}>
                 <div className="create-list-header">
+                    <label htmlFor="create-title-input">Title</label>
                     <input 
                         onChange={handleOnChange}
-                        placeholder="Title" 
                         className="input create-title-input" 
                         type="text"
                         name="title"
@@ -44,17 +44,19 @@ export default function CreateListPage() {
                         id="create-title-input">
                     </input>
                 </div>
+                <label htmlFor='create-todos-input'>Content | Markdown</label>
                 <textarea 
                     name="todos"
-                    placeholder="Markdown"
                     className="input create-textarea"
                     id="create-todos-input"
                     onChange={handleOnChange}>
                 </textarea>
+                <label htmlFor='create-todos-input'>Preview</label>
+
                 <ReactMarkdown className="markdown" >{list.todos}</ReactMarkdown>
                 <div className="create-btn-container">
-                    <Link to="/">
-                        <button className="btn btn-secondary">Back</button>
+                    <Link className="btn btn-secondary" to="/">
+                        Back
                     </Link>
                 <input 
                     className="btn btn-success"
