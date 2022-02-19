@@ -12,7 +12,7 @@ export default function ListPage({lists, user}) {
         <div className="listPage">
             <h1 className="header-1"> Welcome {user.firstName}</h1>
                 <div className='header-buttons'>
-                <Link to='/list/create' className="btn new-note-btn btn-success">New Note</Link>
+                <Link to='/list/create' className="btn new-note-btn btn-success">New</Link>
                 <LogoutBtn />
                 </div>
             <div className="lists-header">
