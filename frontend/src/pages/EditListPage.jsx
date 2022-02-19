@@ -50,10 +50,11 @@ export default function EditListPage(props) {
     return (
         <>
             <div className="listPage">
-                <h1 className="header-1">Edit your note</h1>
+                <h1 className="header-1">Edit note</h1>
                 <div className="create-list">
                     <form onSubmit={handleSubmit}>
                         <div className="create-list-header">
+                        <label htmlFor="create-title-input">Title</label>
                             <input 
                                 value={list?.title}
                                 className="create-title-input" 
@@ -64,6 +65,7 @@ export default function EditListPage(props) {
                                 onChange={handleOnChange}>
                                 </input>
                         </div>
+                        <label htmlFor='create-todos-input'>Content | Markdown</label>
                         <textarea 
                             name="todos"
                             value={list?.todos}
@@ -73,10 +75,12 @@ export default function EditListPage(props) {
                             required={true} 
                             >
                         </textarea>
+                        <label htmlFor='create-todos-input'>Preview</label>
+
                         <ReactMarkdown className="markdown" >{list.todos}</ReactMarkdown>
                         <div className="create-btn-container">
-                            <Link to="/">
-                                <button className="btn btn-secondary">Back</button>
+                            <Link className="btn btn-secondary" to="/">
+                                Back
                             </Link>
                         <input 
                             className="btn btn-success"
