@@ -1,14 +1,14 @@
 :root {
-  --primary: #0cb67e;
-  --primary-light: #36daa4;
-  --success: #4e93fc;
-  --success-light: #71a9fe;
+  --primary: #383a39;
+  --primary-light: rgb(86, 89, 89);
+  --success: #4928ef;
+  --success-light: #7760eb;
   --secondary: #7c559f;
   --light: #EEE;
-  --danger: #fa8938;
-  --danger-light: #f69550;
-  --dark: #131A26;
-  --text: #202B3E;
+  --danger: #df34a3;
+  --danger-light: #f671c7;
+  --dark: #13261c;
+  --text: #28322f;
 }
 
 * {
@@ -38,6 +38,16 @@ h1 {
 
 }
 
+label {
+  color: var(--light);
+  margin-bottom: 16px;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .header-1 {
   font-size: 2em;
   font-weight: 700;
@@ -50,7 +60,7 @@ h1 {
   color: var(--primary);
   text-transform: uppercase;
   font-weight: 400;
-  margin-bottom: 32px;
+  margin-top: 1rem;
 }
 
 .header-3 {
@@ -211,10 +221,8 @@ h1 {
   margin-bottom: 10px;
   max-width: 100%;
   min-width: 100%;
-  border: 2px solid var(--light);
   border-radius: 5px;
   height: 35vh;
-  background: transparent;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -235,13 +243,13 @@ h1 {
 }
 .list-edit-btn {
   color: var(--light);
-  font-size: 20px;
+  font-size: 25px;
   margin-right: 10px;
   transition: all .2s ease-in-out;
 }
 .list-delete-btn {
   color: var(--light);
-  font-size: 20px;
+  font-size: 25px;
   transition: all .2s ease-in-out;
 }
 
